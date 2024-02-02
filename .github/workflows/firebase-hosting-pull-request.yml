@@ -23,6 +23,8 @@ jobs:
       # Step to build the project
       - name: Build
         run: npm run build # Or use yarn build if you're using Yarn
+        env:
+          CI: false
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
