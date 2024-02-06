@@ -14,25 +14,16 @@ const fadeOutBackground = keyframes`
 
 const titleMove = keyframes`
   from {
-    transform: translateY(-50%) translateX(-50%);
-    left: 50%;
+    position: absolute;
     top: 50%;
-    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   to {
-    transform: translateY(0) translateX(0);
-    position: static;
-  }
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    transform: translate(0, 0);
   }
 `;
 
@@ -68,9 +59,7 @@ const Intro = () => {
             <S.Link to="/inputImage">
               <S.LinkBox src={mainImg} alt="img" />
             </S.Link>
-
             <S.Middle />
-
             <S.Link2 to="/research">
               <S.LinkBox2 src={mainSearch} alt="research" />
             </S.Link2>
@@ -83,12 +72,16 @@ const Intro = () => {
 
 const S = {
   Titleimg: styled.img`
-    margin-block: 30px;
+    inherits: false;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     animation: ${titleMove} 2s ease-out 3s forwards;
   `,
   Background: styled.div`
     animation: ${fadeOutBackground} 2s ease-out 3s forwards;
-    background-color: #ffe39e; // 초기 배경색 설정
+    background-color: #ffe39e;
     width: 100%;
     height: 100vh;
     position: relative;
@@ -108,12 +101,16 @@ const S = {
   `,
   Row: styled.div`
     display: flex;
+    padding-top: 300px;
     justify-content: space-between;
   `,
   Link: styled(Link)`
+    opacity: 0;
     animation: ${appearFromLeft} 1s ease-out 3s forwards;
   `,
   Link2: styled(Link)`
+    /* display: none; */
+    opacity: 0;
     animation: ${appearFromRight} 1s ease-out 3s forwards;
   `,
   LinkBox: styled.img`
