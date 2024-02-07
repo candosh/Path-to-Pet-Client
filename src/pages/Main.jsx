@@ -1,7 +1,7 @@
-import React, { useState, useRef  } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { DogInput, MobileDogInput, bg2 } from "../images";
+import { DropPet, DogInput, MobileDogInput, bg2 } from "../images";
 import {
   Header,
   DisableMain,
@@ -66,7 +66,6 @@ const Main = () => {
         setTimeout(() => {
           navigate("/similarity", { state: { arr: response.data } });
         }, 2000);
-
       })
       .catch((error) => {
         // 업로드 실패 시에 수행할 작업
@@ -84,8 +83,7 @@ const Main = () => {
           <S.UploadBox
             onClick={() => {
               inputREF.current.click();
-            }}
-          >
+            }}>
             {/* 이미지 업로드  */}
             <S.InputArea
               ref={inputREF}
@@ -99,7 +97,7 @@ const Main = () => {
                 {isMobile ? (
                   <S.UploadBeforeImg src={MobileDogInput} alt="Dog" />
                 ) : (
-                  <S.UploadBeforeImg src={DogInput} alt="Dog" />
+                  <S.UploadBeforeImg src={DropPet} alt="Dog" />
                 )}
                 <S.UploadAfterImg id="srcImg" src={imgBase64} alt="Thumb" />
               </S.Row>
@@ -108,7 +106,7 @@ const Main = () => {
                 {isMobile ? (
                   <S.UploadBeforeImg src={MobileDogInput} alt="Dog" />
                 ) : (
-                  <S.UploadBeforeImg src={DogInput} alt="Dog" />
+                  <S.UploadBeforeImg src={DropPet} alt="Dog" />
                 )}
               </S.Row>
             )}
