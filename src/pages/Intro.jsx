@@ -1,6 +1,14 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { Title, bg, mainSearch, mainImg } from "../images";
+import {
+  MainTitle,
+  bg,
+  ListCat,
+  LostCat,
+  mainImg,
+  MainCat,
+  MainDog,
+} from "../images";
 import { Link } from "react-router-dom";
 
 const fadeOutBackground = keyframes`
@@ -54,15 +62,21 @@ const Intro = () => {
     <S.Container>
       <S.Background>
         <S.Main>
-          <S.Titleimg src={Title} alt="title" />
+          <S.Titleimg src={MainTitle} alt="title" />
           <S.Row>
-            <S.Link to="/inputImage">
+            {/* <S.Link to="/inputImage">
               <S.LinkBox src={mainImg} alt="img" />
-            </S.Link>
-            <S.Middle />
-            <S.Link2 to="/research">
-              <S.LinkBox2 src={mainSearch} alt="research" />
+            </S.Link> */}
+            {/* <S.Middle /> */}
+            <S.Link2 to="/select?cat">
+              <S.LinkBox2 src={MainCat} alt="research" />
             </S.Link2>
+            <S.Link2 to="/select?dog">
+              <S.LinkBox2 src={MainDog} alt="research" />
+            </S.Link2>
+            {/* <S.Link2 to="/research">
+              <S.LinkBox2 src={ListCat} alt="research" />
+            </S.Link2> */}
           </S.Row>
         </S.Main>
       </S.Background>
@@ -111,6 +125,8 @@ const S = {
   Link2: styled(Link)`
     /* display: none; */
     opacity: 0;
+    margin-left: 20px;
+    margin-right: 20px;
     animation: ${appearFromRight} 1s ease-out 3s forwards;
   `,
   LinkBox: styled.img`
