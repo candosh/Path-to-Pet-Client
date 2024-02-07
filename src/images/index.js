@@ -19,6 +19,7 @@ import noItemText from "./noItemText.svg";
 import MainTitle from "./MainTitle.svg";
 import DropPet from "./DropPet.svg";
 import FoundCat from "./FoundCat.svg";
+import FoundDog from "./FoundDog.svg";
 import ListCat from "./ListCat.svg";
 import ListDog from "./ListDog.svg";
 import LostCat from "./LostCat.svg";
@@ -27,6 +28,7 @@ import MainCat from "./MainCat.svg";
 import MainDog from "./MainDog.svg";
 
 export {
+  FoundDog,
   FoundCat,
   ListCat,
   ListDog,
