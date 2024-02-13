@@ -28,8 +28,7 @@ const Header = () => {
           style={{ marginLeft: "120px", cursor: "pointer" }}
           onClick={() => {
             window.location.href = "/";
-          }}
-        >
+          }}>
           <img src={Logo} alt="logo" />
         </div>
       </S.logoBox>
@@ -40,17 +39,15 @@ const Header = () => {
               style={{ marginRight: "56px", cursor: "pointer" }}
               onClick={() => {
                 handleNavImg();
-              }}
-            >
-              <S.LinkText1>이미지로 찾기</S.LinkText1>
+              }}>
+              <S.LinkText1>find by image</S.LinkText1>
             </div>
             <div
               style={{ marginRight: "120px", cursor: "pointer" }}
               onClick={() => {
                 handleNavResearch();
-              }}
-            >
-              <S.LinkText2>필터로 찾기</S.LinkText2>
+              }}>
+              <S.LinkText2>find by filter</S.LinkText2>
             </div>
           </>
         ) : (
@@ -59,17 +56,15 @@ const Header = () => {
               style={{ marginRight: "56px", cursor: "pointer" }}
               onClick={() => {
                 handleNavImg();
-              }}
-            >
-              <S.LinkText2>이미지로 찾기</S.LinkText2>
+              }}>
+              <S.LinkText2>find by image</S.LinkText2>
             </div>
             <div
               style={{ marginRight: "120px", cursor: "pointer" }}
               onClick={() => {
                 handleNavResearch();
-              }}
-            >
-              <S.LinkText1>필터로 찾기</S.LinkText1>
+              }}>
+              <S.LinkText1>find by filter</S.LinkText1>
             </div>
           </>
         )}

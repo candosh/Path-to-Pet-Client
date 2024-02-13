@@ -7,7 +7,9 @@ const Loading = () => {
     <S.Container>
       <S.SubArea>
         <S.Row>
-          <S.InnerText>사진과 유사한 강아지들을 찾는 중이에요...</S.InnerText>
+          <S.InnerText>
+            Looking for pet that look similar to the picture •••
+          </S.InnerText>
           <S.img src={loading} alt="loading" />
         </S.Row>
       </S.SubArea>
@@ -51,7 +53,7 @@ const S = {
     margin: 0;
     padding-top: 24px;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 16px;
     @media screen and (max-width: 393px) {
       padding-top: 50px;
       font-size: 24px;

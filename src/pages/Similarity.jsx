@@ -22,9 +22,9 @@ const Similarity = () => {
       {isMobile ? <MHeader /> : <Header />}
       <S.Container>
         <S.HeaderBox>
-          사진과 유사한
+          List of pets
           <br />
-          강아지들을 찾아봤어요.
+          similar to the picture
         </S.HeaderBox>
         {arr.length !== 0 ? (
           <S.AnimalContainer>
@@ -50,8 +50,7 @@ const Similarity = () => {
             <S.BackButton
               onClick={() => {
                 navigate("/");
-              }}
-            >
+              }}>
               돌아가기
             </S.BackButton>
           </div>
