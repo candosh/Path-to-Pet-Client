@@ -22,7 +22,7 @@ const Select = () => {
         <S.Main>
           <S.Titleimg src={MainTitle} alt="title" />
           <S.Row>
-            <S.Link2 to="/research">
+            <S.Link2 to="/registration">
               <S.LinkBox2
                 src={queryString === "dog" ? FoundDog : FoundCat}
                 alt="research"
