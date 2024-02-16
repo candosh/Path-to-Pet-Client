@@ -71,32 +71,66 @@ const Registration = () => {
                   <>
                     <S.ContentContainer>
                       <S.ContentTitle>Registrar's Name</S.ContentTitle>
-                      <S.ContentInput>
-                        <S.ContentText>Please enter it.</S.ContentText>
-                      </S.ContentInput>
+                      <S.ContentInput
+                        as="input"
+                        type="text"
+                        placeholder="Please enter it."
+                      />
                     </S.ContentContainer>
                     <S.ContentContainer>
                       <S.ContentTitle>
                         Registrar's Connect Number
                       </S.ContentTitle>
-                      <S.ContentInput>
-                        <S.ContentText>Please enter it.</S.ContentText>
-                      </S.ContentInput>
+                      <S.ContentInput
+                        as="input"
+                        type="text"
+                        placeholder="Please enter it."
+                      />
                     </S.ContentContainer>
                   </>
                 </S.LeftContainer>
                 <S.RightContainer>
                   <S.ContentContainer>
                     <S.ContentTitle>Breed</S.ContentTitle>
-                    <S.ContentInput>
-                      <S.ContentText>Please enter it.</S.ContentText>
-                    </S.ContentInput>
+                    <S.ContentInput
+                      as="input"
+                      type="text"
+                      placeholder="Please enter it."
+                    />
                   </S.ContentContainer>
                   <S.ContentContainer>
                     <S.ContentTitle>Where You found</S.ContentTitle>
-                    <S.ContentInput>
-                      <S.ContentText>Please enter it.</S.ContentText>
+                    <S.ContentInput
+                      as="input"
+                      type="text"
+                      placeholder="Please enter it."
+                    />
+                  </S.ContentContainer>
+                  <S.ContentContainer>
+                    <S.ContentTitle>Neutered</S.ContentTitle>
+                    <S.ContentInput as="select">
+                      <option value="">Please select</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                      <option value="unknown">Unknown</option>
                     </S.ContentInput>
+                  </S.ContentContainer>
+                  <S.ContentContainer>
+                    <S.ContentTitle>Gender</S.ContentTitle>
+                    <S.ContentInput as="select">
+                      <option value="">Please select</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="unknown">Unknown</option>
+                    </S.ContentInput>
+                  </S.ContentContainer>
+                  <S.ContentContainer>
+                    <S.ContentTitle>Significant to report</S.ContentTitle>
+                    <S.OtherContentInput
+                      as="textarea"
+                      type="text"
+                      placeholder="Please enter it."
+                    />
                   </S.ContentContainer>
                 </S.RightContainer>
               </S.ContentWrapper>
@@ -162,24 +196,21 @@ const S = {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    padding: 0 35px; // Match left and right padding with TitleContainer
-    box-sizing: border-box; // Ensure padding is included in the width calculation
+    padding: 0 25px;
+    box-sizing: border-box;
     @media screen and (max-width: 393px) {
       flex-direction: column;
     }
   `,
   LeftContainer: styled.div`
     display: flex;
-    flex-direction: column; // Stack children vertically
-    align-items: flex-start; // Align children to the start of the container
-    width: 50%; // Take up half of the parent's width
-    // Remove any max-width or flex-grow properties if previously defined
-    // Add padding or margins as needed
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
   `,
   UploadBox: styled.div`
     width: 350px;
     height: 350px;
-    padding-left: 20px;
     padding-top: 20px;
   `,
   InputArea: styled.input`
@@ -200,8 +231,8 @@ const S = {
   ContentContainer: styled.div`
     height: 58px;
     width: 317px;
+    padding-left: 10px;
     padding-top: 30px;
-    padding-left: 30px;
   `,
   ContentTitle: styled.div`
     color: #ffb941;
@@ -219,25 +250,34 @@ const S = {
     border-color: #989595;
     border-radius: 10px;
     border: 1px solid;
-  `,
-  ContentText: styled.div`
-    color: #c1c1c1;
+    outline: none;
+    color: #3c3c3c;
     font-size: 14px;
     font-weight: 400;
-    left: 20px;
-    letter-spacing: 0;
-    line-height: 14px;
-    position: absolute;
-    top: 8px;
-    white-space: nowrap;
+    padding-left: 20px;
+  `,
+  OtherContentInput: styled.div`
+    height: 135px;
+    width: 317px;
+    top: 26px;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid;
+    outline: none;
+    color: #3c3c3c;
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 20px;
+    padding-top: 20px;
+    resize: none;
+    overflow: auto;
   `,
   RightContainer: styled.div`
     display: flex;
-    flex-direction: column; // Stack children vertically
-    align-items: flex-start; // Align children to the start of the container
-    width: 50%; // Take up half of the parent's width
-    // Remove any max-width or flex-grow properties if previously defined
-    // Add padding or margins as needed
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+    width: 50%;
   `,
 
   CompleteContainer: styled.div`
