@@ -44,28 +44,62 @@ const Registration = () => {
               <S.TitleContainer>
                 Registering an abandoned animal you found
               </S.TitleContainer>
-              <S.UploadBox>
-                <label htmlFor="image-upload">
-                  {selectedImage ? (
-                    <S.UploadAfterImg
-                      src={imgBase64}
-                      alt="Uploaded Image Preview"
+              <S.ContentWrapper>
+                <S.LeftContainer>
+                  <S.UploadBox>
+                    <label htmlFor="image-upload">
+                      {selectedImage ? (
+                        <S.UploadAfterImg
+                          src={imgBase64}
+                          alt="Uploaded Image Preview"
+                        />
+                      ) : (
+                        <S.UploadBeforeImg
+                          src={RegistDropPet}
+                          alt="Upload Prompt"
+                        />
+                      )}
+                    </label>
+                    <S.InputArea
+                      id="image-upload"
+                      ref={inputRef}
+                      accept="image/*"
+                      type="file"
+                      onChange={imageChange}
                     />
-                  ) : (
-                    <S.UploadBeforeImg
-                      src={RegistDropPet}
-                      alt="Upload Prompt"
-                    />
-                  )}
-                </label>
-                <S.InputArea
-                  id="image-upload"
-                  ref={inputRef}
-                  accept="image/*"
-                  type="file"
-                  onChange={imageChange}
-                />
-              </S.UploadBox>
+                  </S.UploadBox>
+                  <>
+                    <S.ContentContainer>
+                      <S.ContentTitle>Registrar's Name</S.ContentTitle>
+                      <S.ContentInput>
+                        <S.ContentText>Please enter it.</S.ContentText>
+                      </S.ContentInput>
+                    </S.ContentContainer>
+                    <S.ContentContainer>
+                      <S.ContentTitle>
+                        Registrar's Connect Number
+                      </S.ContentTitle>
+                      <S.ContentInput>
+                        <S.ContentText>Please enter it.</S.ContentText>
+                      </S.ContentInput>
+                    </S.ContentContainer>
+                  </>
+                </S.LeftContainer>
+                <S.RightContainer>
+                  <S.ContentContainer>
+                    <S.ContentTitle>Breed</S.ContentTitle>
+                    <S.ContentInput>
+                      <S.ContentText>Please enter it.</S.ContentText>
+                    </S.ContentInput>
+                  </S.ContentContainer>
+                  <S.ContentContainer>
+                    <S.ContentTitle>Where You found</S.ContentTitle>
+                    <S.ContentInput>
+                      <S.ContentText>Please enter it.</S.ContentText>
+                    </S.ContentInput>
+                  </S.ContentContainer>
+                </S.RightContainer>
+              </S.ContentWrapper>
               <S.CompleteContainer>
                 <S.CompleteText onClick={handleCompleteClick}>
                   complete
@@ -123,6 +157,25 @@ const S = {
     padding-left: 35px;
     padding-top: 30px;
   `,
+  ContentWrapper: styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0 35px; // Match left and right padding with TitleContainer
+    box-sizing: border-box; // Ensure padding is included in the width calculation
+    @media screen and (max-width: 393px) {
+      flex-direction: column;
+    }
+  `,
+  LeftContainer: styled.div`
+    display: flex;
+    flex-direction: column; // Stack children vertically
+    align-items: flex-start; // Align children to the start of the container
+    width: 50%; // Take up half of the parent's width
+    // Remove any max-width or flex-grow properties if previously defined
+    // Add padding or margins as needed
+  `,
   UploadBox: styled.div`
     width: 350px;
     height: 350px;
@@ -144,6 +197,49 @@ const S = {
     background-color: white;
     resize: cover;
   `,
+  ContentContainer: styled.div`
+    height: 58px;
+    width: 317px;
+    padding-top: 30px;
+    padding-left: 30px;
+  `,
+  ContentTitle: styled.div`
+    color: #ffb941;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    position: absolute;
+    white-space: nowrap;
+  `,
+  ContentInput: styled.div`
+    height: 32px;
+    width: 317px;
+    top: 26px;
+    position: relative;
+    border-color: #989595;
+    border-radius: 10px;
+    border: 1px solid;
+  `,
+  ContentText: styled.div`
+    color: #c1c1c1;
+    font-size: 14px;
+    font-weight: 400;
+    left: 20px;
+    letter-spacing: 0;
+    line-height: 14px;
+    position: absolute;
+    top: 8px;
+    white-space: nowrap;
+  `,
+  RightContainer: styled.div`
+    display: flex;
+    flex-direction: column; // Stack children vertically
+    align-items: flex-start; // Align children to the start of the container
+    width: 50%; // Take up half of the parent's width
+    // Remove any max-width or flex-grow properties if previously defined
+    // Add padding or margins as needed
+  `,
+
   CompleteContainer: styled.div`
     height: 80px;
     width: 800px;
