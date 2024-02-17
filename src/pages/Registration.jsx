@@ -6,6 +6,7 @@ import { bg2, RegistDropPet } from "../images";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Registration = () => {
   const isMobile = window.innerWidth <= 393;
@@ -45,35 +46,31 @@ const Registration = () => {
   const handleCompleteClick = async () => {
     const formData = new FormData();
 
-    // 선택한 이미지 추가
-    if (selectedImage) {
-      formData.append("photo", selectedImage);
-    }
-
     formData.append("photo", selectedImage);
-    formData.append("is_dog", queryString === "dog" ? "true" : "false");
+    formData.append("is_dog", queryString === "dog" ? true : false);
     formData.append("breed", breed);
     formData.append("gender", gender);
-    formData.append("is_neutered", isNeutered === "yes" ? "true" : "false");
+    formData.append("is_neutered", isNeutered === "yes" ? true : false);
     formData.append("name", registrarName);
     formData.append("shelter_location", "Not protected yet");
     formData.append("shelter_contact", connectNumber);
     formData.append("location", findlocation);
     formData.append("notes", significantReport);
-    formData.append("is_adopted", "false");
+    formData.append("is_adopted", false);
     formData.append("password", "animal");
 
     try {
-      const response = await fetch("https://34.64.68.236.nip.io/animals", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await axios.post(
+        "https://34.64.68.236.nip.io/animals",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const result = await response.json();
-      console.log(result);
+      console.log("Image uploaded successfully:", response.data);
       navigate("/research");
     } catch (error) {
       console.error("Error during the fetch operation:", error);
