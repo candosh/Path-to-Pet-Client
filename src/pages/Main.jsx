@@ -68,7 +68,9 @@ const Main = () => {
         // console.log(response);
         setLoading(false);
         setTimeout(() => {
-          navigate("/similarity", { state: { arr: response.data } });
+          navigate(`/similarity?${queryString}`, {
+            state: { arr: response.data },
+          });
         }, 2000);
       })
       .catch((error) => {
