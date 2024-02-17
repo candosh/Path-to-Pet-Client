@@ -26,6 +26,7 @@ import LostCat from "./LostCat.svg";
 import LostDog from "./LostDog.svg";
 import MainCat from "./MainCat.svg";
 import MainDog from "./MainDog.svg";
+import RegistDropPet from "./RegistDropPet.svg";
 
 export {
   FoundDog,
@@ -56,4 +57,5 @@ export {
   noItemText,
   MainTitle,
   DropPet,
+  RegistDropPet,
 };
