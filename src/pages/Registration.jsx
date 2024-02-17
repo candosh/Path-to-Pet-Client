@@ -73,6 +73,8 @@ const Registration = () => {
       console.log("Image uploaded successfully:", response.data);
       navigate("/research");
     } catch (error) {
+      console.log("FormData to be sent:", Array.from(formData.entries()));
+
       console.error("Error during the fetch operation:", error);
     }
   };
@@ -194,8 +196,8 @@ const Registration = () => {
                       onChange={(e) => setGender(e.target.value)}
                     >
                       <option value="">Please select</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
                     </S.ContentInput>
                   </S.ContentContainer>
                   <S.ContentContainer>
