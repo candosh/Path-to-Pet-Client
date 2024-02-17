@@ -31,15 +31,16 @@ const Similarity = () => {
             {arr.map((res, i) => (
               <SimilarityCard
                 key={i}
-                date={res[0].happenDt}
-                kindCd={res[0].kindCd}
-                sexCd={res[0].sexCd}
-                neuterYn={res[0].neuterYn}
-                imgUrl={res[0].filename}
-                careNm={res[0].careNm}
-                careTel={res[0].careTel}
-                weight={res[0].weight}
-                similar={Math.round(res[1])}
+                date={res.admission_date}
+                kindCd={res.breed}
+                sexCd={res.gender}
+                neuterYn={res.isneutered ? "Y" : "N"}
+                imgUrl={res.photo_url}
+                careNm={res.shelter_contact}
+                careTel={res.shelter_location}
+                weight={"12"}
+                similar={Math.round(res.probability)}
+                notice={res.notes}
               />
             ))}
           </S.AnimalContainer>

@@ -49,11 +49,13 @@ const Main = () => {
   const handleLodingAndNavigate = () => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("image", selectedImage);
-    formData.append("filename", selectedImage.name);
+
+    formData.append("photo", selectedImage);
+    formData.append("is_dog", false);
+    formData.append("breed", "BritishShorthair");
 
     axios
-      .post("https://findog.buttercrab.net/api/upload-image", formData, {
+      .post("https://34.64.68.236.nip.io/animals/image", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -62,7 +64,6 @@ const Main = () => {
         // 업로드 성공 후에 수행할 작업
         // console.log(response);
         setLoading(false);
-
         setTimeout(() => {
           navigate("/similarity", { state: { arr: response.data } });
         }, 2000);
