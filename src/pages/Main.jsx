@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { DropPet, DogInput, MobileDogInput, bg2 } from "../images";
 import {
   Header,
@@ -13,6 +13,9 @@ import {
 import axios from "axios";
 
 const Main = () => {
+  const location = useLocation();
+  const queryString = location.search.slice(1);
+
   const isMobile = window.innerWidth <= 393;
 
   const [selectedImage, setSelectedImage] = useState(null); //이미지 선택 저장
@@ -49,11 +52,13 @@ const Main = () => {
   const handleLodingAndNavigate = () => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("image", selectedImage);
-    formData.append("filename", selectedImage.name);
+
+    formData.append("photo", selectedImage);
+    formData.append("is_dog", queryString === "dog" ? true : false);
+    formData.append("breed", "BritishShorthair");
 
     axios
-      .post("https://findog.buttercrab.net/api/upload-image", formData, {
+      .post("https://34.64.68.236.nip.io/animals/image", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -62,15 +67,16 @@ const Main = () => {
         // 업로드 성공 후에 수행할 작업
         // console.log(response);
         setLoading(false);
-
         setTimeout(() => {
-          navigate("/similarity", { state: { arr: response.data } });
+          navigate(`/similarity?${queryString}`, {
+            state: { arr: response.data },
+          });
         }, 2000);
       })
       .catch((error) => {
         // 업로드 실패 시에 수행할 작업
         setLoading(false);
-        console.error("어Upload failed:", error);
+        console.error("Upload failed:", error);
       });
   };
   return (
@@ -116,20 +122,20 @@ const Main = () => {
             <>
               {selectedImage ? (
                 <S.MNextpageBtn onClick={() => handleLodingAndNavigate()}>
-                  강아지 찾기
+                  Find {queryString}
                 </S.MNextpageBtn>
               ) : (
-                <S.MNextpageBtnNon>강아지 찾기</S.MNextpageBtnNon>
+                <S.MNextpageBtnNon>Find {queryString}</S.MNextpageBtnNon>
               )}
             </>
           ) : (
             <>
               {selectedImage ? (
                 <S.NextpageBtn onClick={() => handleLodingAndNavigate()}>
-                  강아지 찾기
+                  Find {queryString}
                 </S.NextpageBtn>
               ) : (
-                <S.NextpageBtnNon>강아지 찾기</S.NextpageBtnNon>
+                <S.NextpageBtnNon>Find {queryString}</S.NextpageBtnNon>
               )}
             </>
           )}

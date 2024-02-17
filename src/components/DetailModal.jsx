@@ -25,30 +25,29 @@ function DetailModal({ open, close, data }) {
                 />
               </S.InModal>
               <div>
-                <S.HeadText>{data.similar}% 일치</S.HeadText>
+                <S.HeadText>{data.similar}% match</S.HeadText>
                 <Label
-                  text={"접수일"}
+                  text={"Date"}
                   data={
                     data.date.substr(0, 4) +
                     "/" +
-                    data.date.substr(4, 2) +
+                    data.date.substr(5, 2) +
                     "/" +
-                    data.date.substr(6, 8)
+                    data.date.substr(8, 2)
                   }
                 />
-                <Label text={"품종"} data={data.kindCd} />
+                <Label text={"Breed"} data={data.kindCd} />
                 <Label
-                  text={"성별/중성화여부"}
+                  text={"Gender / Neutered"}
                   data={data.sexCd + " / " + data.neuterYn}
                 />
-                <Label text={"무게"} data={data.weight} />
-                <Label text={"특이사항"} data={data.notice} />
+                <Label text={"weight"} data={data.weight} />
+                <Label text={"particulars"} data={data.notice} />
               </div>
             </S.Row>
             <S.Row2>
-              <Label text={"보호센터"} data={data.careNm} />
-
-              <Label text={"전화번호"} data={data.careTel} />
+              <Label text={"Protection center"} data={data.careNm} />
+              <Label text={"Connect number"} data={data.careTel} />
             </S.Row2>
           </S.Container>
         </S.Background>
@@ -128,6 +127,7 @@ const S = {
   `,
   Row2: styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     margin-left: 5px;
     margin-top: 15px;
