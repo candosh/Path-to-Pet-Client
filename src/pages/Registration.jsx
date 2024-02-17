@@ -156,22 +156,22 @@ const Registration = () => {
                     >
                       <option value="">Please select</option>
                       {/* 강아지 */}
-                      <option value="GOLDEN_RETRIEVER">GoldenRetriever</option>
-                      <option value="CHIHUAHUA">Chihuahua</option>
-                      <option value="GERMAN_SHEPHERD">GermanShepherd</option>
-                      <option value="BEAGLE">Beagle</option>
-                      <option value="POODLE">Poodle</option>
-                      <option value="BRITISH_SHORTHAIR">
+                      <option value="GoldenRetriever">GoldenRetriever</option>
+                      <option value="Chihuahua">Chihuahua</option>
+                      <option value="GermanShepherd">GermanShepherd</option>
+                      <option value="Beagle">Beagle</option>
+                      <option value="Poodle">Poodle</option>
+                      <option value="British Shorthair">
                         British Shorthair
                       </option>
                       {/* 고양이 */}
-                      <option value="AMERICAN_SHORTHAIR">
+                      <option value="American Shorthair">
                         American Shorthair
                       </option>
-                      <option value="BENGAL">Bengal</option>
-                      <option value="SIAMESE">Siamese</option>
-                      <option value="PERSIAN">Persian</option>
-                      <option value="SCOTTISH_FOLD">Scottish Fold</option>
+                      <option value="Bengal">Bengal</option>
+                      <option value="Siamese">Siamese</option>
+                      <option value="Persian">Persian</option>
+                      <option value="Scottish Fold">Scottish Fold</option>
                     </S.ContentInput>
                   </S.ContentContainer>
                   <S.ContentContainer>
