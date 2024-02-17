@@ -39,10 +39,9 @@ const Research = () => {
       } else {
         delete params.happen_dt;
       }
-
-      const response = await axios.get("https://findog.buttercrab.net/api/", {
-        params: params,
-      });
+      const response = await axios.get(
+        "https://34.64.68.236.nip.io/animals?page=1&term=10"
+      );
       console.log(response.data);
       if ("happen_dt" in params) {
         response.data.reverse();
@@ -157,7 +156,7 @@ const Research = () => {
         {isMobile ? <MHeader /> : <Header />}
         <S.Container>
           <S.HeaderBox>
-            지금까지 등록된 <br /> 강아지 목록이에요.
+            List of registered <br /> cats
           </S.HeaderBox>
 
           {isMobile ? (
@@ -165,8 +164,7 @@ const Research = () => {
               <S.FilterButton2
                 onClick={() => {
                   setIsClick((res) => !res);
-                }}
-              >
+                }}>
                 <FaFilter />
               </S.FilterButton2>
               <div style={{ height: "16px" }}></div>
@@ -176,8 +174,7 @@ const Research = () => {
               <S.FilterButton
                 onClick={() => {
                   setIsClick((res) => !res);
-                }}
-              >
+                }}>
                 필터 검색 결과 보기
               </S.FilterButton>
               <div style={{ height: "10px" }}></div>
@@ -239,16 +236,16 @@ const Research = () => {
               getCurrentPageItems().map((res, i) => (
                 <AnimalCard
                   key={i}
-                  date={res.happenDt}
-                  kindCd={res.kindCd}
-                  sexCd={res.sexCd}
-                  neuterYn={res.neuterYn}
-                  imgUrl={res.filename}
-                  notice={res.noticeComment}
+                  date={res.admission_date}
+                  kindCd={res.breed}
+                  sexCd={res.gender}
+                  neuterYn={res.is_neutered}
+                  imgUrl={res.photo_url}
+                  notice={res.notes}
                   colorCd={res.colorCd}
                   caretel={res.careTel}
                   weight={res.weight}
-                  careNm={res.careNm}
+                  careNm={res.name}
                 />
               ))
             ) : (
@@ -263,8 +260,7 @@ const Research = () => {
           <S.Pagenation>
             <S.PagenationButton
               onClick={goToPreviousPage}
-              disabled={currentPage === 1}
-            >
+              disabled={currentPage === 1}>
               <img
                 src="img/arrow-left.png"
                 alt="left"
@@ -276,8 +272,7 @@ const Research = () => {
             </div>
             <S.PagenationButton
               onClick={goToNextPage}
-              disabled={currentPage === totalPages}
-            >
+              disabled={currentPage === totalPages}>
               <img
                 src="img/arrow-right.png"
                 alt="right"
