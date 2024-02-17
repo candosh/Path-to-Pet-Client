@@ -15,7 +15,7 @@ import { Link, useLocation } from "react-router-dom";
 const Select = () => {
   const location = useLocation();
   const queryString = location.search.slice(1);
-
+  console.log(queryString);
   return (
     <S.Container>
       <S.Background>

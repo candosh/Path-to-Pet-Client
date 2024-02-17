@@ -1,10 +1,12 @@
 // 3.0 내가 찾은 유기동물 등록하기 페이지
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Header, MHeader } from "../components";
 import { bg2, RegistDropPet } from "../images";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Registration = () => {
   const isMobile = window.innerWidth <= 393;
@@ -13,11 +15,17 @@ const Registration = () => {
   const [imgBase64, setImgBase64] = useState("");
   const inputRef = useRef();
 
-  // 업로드 api 로직 추가 해야함
+  const location = useLocation();
+  const queryString = location.search.slice(1);
 
-  const handleCompleteClick = () => {
-    navigate("/research");
-  };
+  // 입력 필드들 상태
+  const [registrarName, setRegistrarName] = useState("");
+  const [connectNumber, setConnectNumber] = useState("");
+  const [breed, setBreed] = useState("");
+  const [gender, setGender] = useState("");
+  const [isNeutered, setIsNeutered] = useState("");
+  const [findlocation, setFindlocation] = useState("");
+  const [significantReport, setSignificantReport] = useState("");
 
   // 이미지 변경 핸들러 부분
   const imageChange = (e) => {
@@ -31,6 +39,43 @@ const Registration = () => {
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
       setSelectedImage(e.target.files[0]);
+    }
+  };
+
+  // api 연동 부분
+  const handleCompleteClick = async () => {
+    const formData = new FormData();
+
+    formData.append("photo", selectedImage);
+    formData.append("is_dog", queryString === "dog" ? true : false);
+    formData.append("breed", breed);
+    formData.append("gender", gender);
+    formData.append("is_neutered", isNeutered === "yes" ? true : false);
+    formData.append("name", registrarName);
+    formData.append("shelter_location", "Not protected yet");
+    formData.append("shelter_contact", connectNumber);
+    formData.append("location", findlocation);
+    formData.append("notes", significantReport);
+    formData.append("is_adopted", false);
+    formData.append("password", "animal");
+
+    try {
+      const response = await axios.post(
+        "https://34.64.68.236.nip.io/animals",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Image uploaded successfully:", response.data);
+      navigate("/research");
+    } catch (error) {
+      console.log("FormData to be sent:", Array.from(formData.entries()));
+
+      console.error("Error during the fetch operation:", error);
     }
   };
 
@@ -75,6 +120,8 @@ const Registration = () => {
                         as="input"
                         type="text"
                         placeholder="Please enter it."
+                        value={registrarName}
+                        onChange={(e) => setRegistrarName(e.target.value)}
                       />
                     </S.ContentContainer>
                     <S.ContentContainer>
@@ -85,43 +132,72 @@ const Registration = () => {
                         as="input"
                         type="text"
                         placeholder="Please enter it."
+                        value={connectNumber}
+                        onChange={(e) => setConnectNumber(e.target.value)}
                       />
                     </S.ContentContainer>
                   </>
                 </S.LeftContainer>
                 <S.RightContainer>
                   <S.ContentContainer>
-                    <S.ContentTitle>Breed</S.ContentTitle>
-                    <S.ContentInput
-                      as="input"
-                      type="text"
-                      placeholder="Please enter it."
-                    />
-                  </S.ContentContainer>
-                  <S.ContentContainer>
                     <S.ContentTitle>Where You found</S.ContentTitle>
                     <S.ContentInput
                       as="input"
                       type="text"
                       placeholder="Please enter it."
+                      value={findlocation}
+                      onChange={(e) => setFindlocation(e.target.value)}
                     />
                   </S.ContentContainer>
                   <S.ContentContainer>
+                    <S.ContentTitle>Breed</S.ContentTitle>
+                    <S.ContentInput
+                      as="select"
+                      value={breed}
+                      onChange={(e) => setBreed(e.target.value)}
+                    >
+                      <option value="">Please select</option>
+                      {/* 강아지 */}
+                      <option value="GoldenRetriever">GoldenRetriever</option>
+                      <option value="Chihuahua">Chihuahua</option>
+                      <option value="GermanShepherd">GermanShepherd</option>
+                      <option value="Beagle">Beagle</option>
+                      <option value="Poodle">Poodle</option>
+                      <option value="British Shorthair">
+                        British Shorthair
+                      </option>
+                      {/* 고양이 */}
+                      <option value="American Shorthair">
+                        American Shorthair
+                      </option>
+                      <option value="Bengal">Bengal</option>
+                      <option value="Siamese">Siamese</option>
+                      <option value="Persian">Persian</option>
+                      <option value="Scottish Fold">Scottish Fold</option>
+                    </S.ContentInput>
+                  </S.ContentContainer>
+                  <S.ContentContainer>
                     <S.ContentTitle>Neutered</S.ContentTitle>
-                    <S.ContentInput as="select">
+                    <S.ContentInput
+                      as="select"
+                      value={isNeutered}
+                      onChange={(e) => setIsNeutered(e.target.value)}
+                    >
                       <option value="">Please select</option>
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
-                      <option value="unknown">Unknown</option>
                     </S.ContentInput>
                   </S.ContentContainer>
                   <S.ContentContainer>
                     <S.ContentTitle>Gender</S.ContentTitle>
-                    <S.ContentInput as="select">
+                    <S.ContentInput
+                      as="select"
+                      value={gender}
+                      onChange={(e) => setGender(e.target.value)}
+                    >
                       <option value="">Please select</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="unknown">Unknown</option>
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
                     </S.ContentInput>
                   </S.ContentContainer>
                   <S.ContentContainer>
@@ -130,6 +206,8 @@ const Registration = () => {
                       as="textarea"
                       type="text"
                       placeholder="Please enter it."
+                      value={significantReport}
+                      onChange={(e) => setSignificantReport(e.target.value)}
                     />
                   </S.ContentContainer>
                 </S.RightContainer>
