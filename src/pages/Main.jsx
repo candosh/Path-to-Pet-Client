@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { DropPet, DogInput, MobileDogInput, bg2 } from "../images";
 import {
   Header,
@@ -13,6 +13,9 @@ import {
 import axios from "axios";
 
 const Main = () => {
+  const location = useLocation();
+  const queryString = location.search.slice(1);
+
   const isMobile = window.innerWidth <= 393;
 
   const [selectedImage, setSelectedImage] = useState(null); //이미지 선택 저장
@@ -51,7 +54,7 @@ const Main = () => {
     const formData = new FormData();
 
     formData.append("photo", selectedImage);
-    formData.append("is_dog", false);
+    formData.append("is_dog", queryString === "dog" ? true : false);
     formData.append("breed", "BritishShorthair");
 
     axios
@@ -71,7 +74,7 @@ const Main = () => {
       .catch((error) => {
         // 업로드 실패 시에 수행할 작업
         setLoading(false);
-        console.error("어Upload failed:", error);
+        console.error("Upload failed:", error);
       });
   };
   return (
@@ -117,20 +120,20 @@ const Main = () => {
             <>
               {selectedImage ? (
                 <S.MNextpageBtn onClick={() => handleLodingAndNavigate()}>
-                  강아지 찾기
+                  Find {queryString}
                 </S.MNextpageBtn>
               ) : (
-                <S.MNextpageBtnNon>강아지 찾기</S.MNextpageBtnNon>
+                <S.MNextpageBtnNon>Find {queryString}</S.MNextpageBtnNon>
               )}
             </>
           ) : (
             <>
               {selectedImage ? (
                 <S.NextpageBtn onClick={() => handleLodingAndNavigate()}>
-                  강아지 찾기
+                  Find {queryString}
                 </S.NextpageBtn>
               ) : (
-                <S.NextpageBtnNon>강아지 찾기</S.NextpageBtnNon>
+                <S.NextpageBtnNon>Find {queryString}</S.NextpageBtnNon>
               )}
             </>
           )}

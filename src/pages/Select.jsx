@@ -15,26 +15,26 @@ import { Link, useLocation } from "react-router-dom";
 const Select = () => {
   const location = useLocation();
   const queryString = location.search.slice(1);
-  console.log(queryString);
+
   return (
     <S.Container>
       <S.Background>
         <S.Main>
           <S.Titleimg src={MainTitle} alt="title" />
           <S.Row>
-            <S.Link2 to="/registration">
+            <S.Link2 to={`/registration?${queryString}`}>
               <S.LinkBox2
                 src={queryString === "dog" ? FoundDog : FoundCat}
                 alt="research"
               />
             </S.Link2>
-            <S.Link2 to="/research">
+            <S.Link2 to={`/inputImage?${queryString}`}>
               <S.LinkBox2
                 src={queryString === "dog" ? LostDog : LostCat}
                 alt="research"
               />
             </S.Link2>
-            <S.Link2 to="/research">
+            <S.Link2 to={`/registration?${queryString}`}>
               <S.LinkBox2
                 src={queryString === "dog" ? ListDog : ListCat}
                 alt="research"
