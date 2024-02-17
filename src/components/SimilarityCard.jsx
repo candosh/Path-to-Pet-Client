@@ -12,6 +12,7 @@ const SimilarityCard = ({
   careNm,
   careTel,
   weight,
+  notice,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -24,6 +25,7 @@ const SimilarityCard = ({
 
   const [testData, setTestData] = useState({});
   const DataChoice = (info) => {
+    console.log(info.notes);
     setTestData({
       date: info.date,
       kindCd: info.kindCd,
@@ -34,12 +36,14 @@ const SimilarityCard = ({
       careNm: info.careNm,
       careTel: info.careTel,
       weight: info.weight,
+      notice: info.notice,
     });
   };
   return (
     <>
       <S.Container
         onClick={() => {
+          console.log(notice);
           DataChoice({
             date: date,
             kindCd: kindCd,
@@ -50,10 +54,10 @@ const SimilarityCard = ({
             careNm: careNm,
             careTel: careTel,
             weight: weight,
+            notice: notice,
           });
           openModal();
-        }}
-      >
+        }}>
         <S.Row>
           <S.AnimalImg
             src={imgUrl}
@@ -62,19 +66,19 @@ const SimilarityCard = ({
             }}
           />
           <S.TextContainer>
-            <S.TextBox1>접수일</S.TextBox1>
+            <S.TextBox1>Date</S.TextBox1>
             <S.TextBox2>{date}</S.TextBox2>
             <div style={{ height: "20px" }}></div>
-            <S.TextBox1>품종</S.TextBox1>
+            <S.TextBox1>Breed</S.TextBox1>
             <S.TextBox2>{kindCd}</S.TextBox2>
             <div style={{ height: "20px" }}></div>
-            <S.TextBox1>성별 / 중성화 여부</S.TextBox1>
+            <S.TextBox1>Gender / Neutered</S.TextBox1>
             <S.TextBox2>
               {sexCd} / {neuterYn}
             </S.TextBox2>
           </S.TextContainer>
         </S.Row>
-        <S.SimilarityBox>사진과 {similar}% 일치해요</S.SimilarityBox>
+        <S.SimilarityBox>{similar}% match with picture</S.SimilarityBox>
       </S.Container>
       <DetailModal open={modalOpen} close={closeModal} data={testData} />
     </>

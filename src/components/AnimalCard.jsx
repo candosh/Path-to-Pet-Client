@@ -56,8 +56,7 @@ const AnimalCard = ({
             careNm: careNm,
           });
           openModal();
-        }}
-      >
+        }}>
         <S.AnimalImg
           src={imgUrl}
           onError={(e) => {
@@ -65,15 +64,15 @@ const AnimalCard = ({
           }}
         />
         <S.TextContainer>
-          <S.TextBox1>접수일</S.TextBox1>
+          <S.TextBox1>Date</S.TextBox1>
           <S.TextBox2>{date}</S.TextBox2>
           <div style={{ height: "20px" }}></div>
-          <S.TextBox1>품종</S.TextBox1>
+          <S.TextBox1>Breed</S.TextBox1>
           <S.TextBox2>{kindCd}</S.TextBox2>
           <div style={{ height: "20px" }}></div>
-          <S.TextBox1>성별 / 중성화 여부</S.TextBox1>
+          <S.TextBox1>Gender / Neutered</S.TextBox1>
           <S.TextBox2>
-            {sexCd} / {neuterYn}
+            {sexCd} / {neuterYn ? "Y" : "N"}
           </S.TextBox2>
         </S.TextContainer>
       </S.Container>

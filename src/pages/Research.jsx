@@ -12,8 +12,11 @@ import { FaFilter } from "react-icons/fa";
 import { bg2 } from "../images";
 import styled from "styled-components";
 import { noItem, noItemText } from "../images";
+import { useLocation } from "react-router-dom";
 
 const Research = () => {
+  const location = useLocation();
+  const queryString = location.search.slice(1);
   const [list, setList] = useState([]);
   const [isClick, setIsClick] = useState(false);
   async function getData() {
@@ -40,10 +43,17 @@ const Research = () => {
         delete params.happen_dt;
       }
 
-      const response = await axios.get("https://findog.buttercrab.net/api/", {
-        params: params,
+      const response = await axios.get("https://34.64.68.236.nip.io/animals", {
+        params: {
+          page: currentPage,
+          term: 10,
+          is_dog: queryString === "dog" ? true : false,
+        },
       });
-      console.log(response.data);
+      // const response = await axios.get(
+      //   "https://34.64.68.236.nip.io/animals?page=1&term=10"
+      // );
+
       if ("happen_dt" in params) {
         response.data.reverse();
       }
@@ -109,11 +119,11 @@ const Research = () => {
   };
 
   const happenDtList = [
-    { label: "전체", days: 0 },
-    { label: "1주일", days: 7 },
-    { label: "1개월", days: 30 },
-    { label: "3개월", days: 90 },
-    { label: "1년", days: 365 },
+    { label: "all", days: 0 },
+    { label: "1week", days: 7 },
+    { label: "1month", days: 30 },
+    { label: "3month", days: 90 },
+    { label: "1year", days: 365 },
   ];
   const [happenDtSelected, setHappenDtSelected] = useState("");
 
@@ -121,30 +131,30 @@ const Research = () => {
     setHappenDtSelected(e.target.value);
   };
 
-  const sexCdList = ["전체", "수컷", "암컷"];
+  const sexCdList = ["all", "male", "female"];
   const [sexSelected, setSexSelected] = useState("");
 
   const handleSexCd = (e) => {
     const selectedValue = e.target.value;
     setSexSelected(
-      selectedValue === "전체" ? "" : selectedValue === "수컷" ? "M" : "F"
+      selectedValue === "all" ? "" : selectedValue === "male" ? "M" : "F"
     );
   };
 
-  const kindCdList = ["전체", "말티즈", "믹스견", "골든 리트리버", "진돗개"];
+  const kindCdList = ["all", "말티즈", "믹스견", "골든 리트리버", "진돗개"];
   const [kindSelected, setKindSelected] = useState("");
 
   const handleKindCd = (e) => {
     const selectedValue = e.target.value;
-    setKindSelected(selectedValue === "전체" ? "" : selectedValue);
+    setKindSelected(selectedValue === "all" ? "" : selectedValue);
   };
 
-  const neuterYnList = ["전체", "Y", "N"];
+  const neuterYnList = ["all", "Y", "N"];
   const [neuterYnSelected, setNeuterYnSelected] = useState("");
 
   const handleNeuterYn = (e) => {
     const selectedValue = e.target.value;
-    setNeuterYnSelected(selectedValue === "전체" ? "" : selectedValue);
+    setNeuterYnSelected(selectedValue === "all" ? "" : selectedValue);
   };
 
   const isMobile = window.innerWidth <= 393;
@@ -157,7 +167,7 @@ const Research = () => {
         {isMobile ? <MHeader /> : <Header />}
         <S.Container>
           <S.HeaderBox>
-            지금까지 등록된 <br /> 강아지 목록이에요.
+            List of registered <br /> {queryString}s
           </S.HeaderBox>
 
           {isMobile ? (
@@ -165,8 +175,7 @@ const Research = () => {
               <S.FilterButton2
                 onClick={() => {
                   setIsClick((res) => !res);
-                }}
-              >
+                }}>
                 <FaFilter />
               </S.FilterButton2>
               <div style={{ height: "16px" }}></div>
@@ -176,13 +185,12 @@ const Research = () => {
               <S.FilterButton
                 onClick={() => {
                   setIsClick((res) => !res);
-                }}
-              >
-                필터 검색 결과 보기
+                }}>
+                View filter search results
               </S.FilterButton>
               <div style={{ height: "10px" }}></div>
               <S.Filter>
-                <S.FilterText>접수일</S.FilterText>
+                <S.FilterText>Date</S.FilterText>
                 <S.Select
                   onChange={handleHappenDt}
                   defaultValue={happenDtList[0].label}
@@ -194,7 +202,7 @@ const Research = () => {
                     </option>
                   ))}
                 </S.Select>
-                <S.FilterText>성별</S.FilterText>
+                <S.FilterText>Gender</S.FilterText>
                 <S.Select
                   onChange={handleSexCd}
                   defaultValue={sexCdList[0]}
@@ -206,7 +214,7 @@ const Research = () => {
                     </option>
                   ))}
                 </S.Select>
-                <S.FilterText>품종</S.FilterText>
+                <S.FilterText>Breed</S.FilterText>
                 <S.Select
                   onChange={handleKindCd}
                   defaultValue={kindCdList[0]}
@@ -218,7 +226,7 @@ const Research = () => {
                     </option>
                   ))}
                 </S.Select>
-                <S.FilterText>중성화여부</S.FilterText>
+                <S.FilterText>Neuter</S.FilterText>
                 <S.Select
                   onChange={handleNeuterYn}
                   defaultValue={neuterYnList[0]}
@@ -239,16 +247,16 @@ const Research = () => {
               getCurrentPageItems().map((res, i) => (
                 <AnimalCard
                   key={i}
-                  date={res.happenDt}
-                  kindCd={res.kindCd}
-                  sexCd={res.sexCd}
-                  neuterYn={res.neuterYn}
-                  imgUrl={res.filename}
-                  notice={res.noticeComment}
+                  date={res.admission_date}
+                  kindCd={res.breed}
+                  sexCd={res.gender}
+                  neuterYn={res.is_neutered}
+                  imgUrl={res.photo_url}
+                  notice={res.notes}
                   colorCd={res.colorCd}
                   caretel={res.careTel}
                   weight={res.weight}
-                  careNm={res.careNm}
+                  careNm={res.name}
                 />
               ))
             ) : (
@@ -263,8 +271,7 @@ const Research = () => {
           <S.Pagenation>
             <S.PagenationButton
               onClick={goToPreviousPage}
-              disabled={currentPage === 1}
-            >
+              disabled={currentPage === 1}>
               <img
                 src="img/arrow-left.png"
                 alt="left"
@@ -276,8 +283,7 @@ const Research = () => {
             </div>
             <S.PagenationButton
               onClick={goToNextPage}
-              disabled={currentPage === totalPages}
-            >
+              disabled={currentPage === totalPages}>
               <img
                 src="img/arrow-right.png"
                 alt="right"
