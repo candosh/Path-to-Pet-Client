@@ -80,7 +80,7 @@ const S = {
     align-items: center;
   `,
   Container: styled.div`
-    width: 660px;
+    width: 700px;
     height: 500px;
     display: flex;
     flex-direction: column;
@@ -117,6 +117,7 @@ const S = {
     align-self: flex-end;
     width: 5%;
     padding: 8px;
+    cursor: pointer;
     @media screen and (max-width: 393px) {
       width: 8%;
     }

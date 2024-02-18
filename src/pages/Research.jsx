@@ -141,7 +141,13 @@ const Research = () => {
     );
   };
 
-  const kindCdList = ["all", "말티즈", "믹스견", "골든 리트리버", "진돗개"];
+  const kindCdList = [
+    "all",
+    "GoldenRetriever",
+    "Chihuahua",
+    "GermanShepherd",
+    "Beagle",
+  ];
   const [kindSelected, setKindSelected] = useState("");
 
   const handleKindCd = (e) => {
@@ -175,7 +181,8 @@ const Research = () => {
               <S.FilterButton2
                 onClick={() => {
                   setIsClick((res) => !res);
-                }}>
+                }}
+              >
                 <FaFilter />
               </S.FilterButton2>
               <div style={{ height: "16px" }}></div>
@@ -185,7 +192,8 @@ const Research = () => {
               <S.FilterButton
                 onClick={() => {
                   setIsClick((res) => !res);
-                }}>
+                }}
+              >
                 View filter search results
               </S.FilterButton>
               <div style={{ height: "10px" }}></div>
@@ -271,7 +279,8 @@ const Research = () => {
           <S.Pagenation>
             <S.PagenationButton
               onClick={goToPreviousPage}
-              disabled={currentPage === 1}>
+              disabled={currentPage === 1}
+            >
               <img
                 src="img/arrow-left.png"
                 alt="left"
@@ -283,7 +292,8 @@ const Research = () => {
             </div>
             <S.PagenationButton
               onClick={goToNextPage}
-              disabled={currentPage === totalPages}>
+              disabled={currentPage === totalPages}
+            >
               <img
                 src="img/arrow-right.png"
                 alt="right"

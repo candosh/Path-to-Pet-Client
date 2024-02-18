@@ -56,7 +56,8 @@ const AnimalCard = ({
             careNm: careNm,
           });
           openModal();
-        }}>
+        }}
+      >
         <S.AnimalImg
           src={imgUrl}
           onError={(e) => {
@@ -84,7 +85,7 @@ const AnimalCard = ({
 const S = {
   Container: styled.div`
     margin: 10px;
-    width: calc(100% - 20px);
+    width: calc(100% - 10px);
     height: 200px;
     display: flex;
     border-radius: 20px;
@@ -103,6 +104,7 @@ const S = {
     object-fit: cover;
     border-radius: 20px 0px 0px 20px;
     margin-right: 16px;
+    cursor: pointer;
     @media screen and (max-width: 393px) {
       border-radius: 20px 0px 0px 20px;
       height: 100%;

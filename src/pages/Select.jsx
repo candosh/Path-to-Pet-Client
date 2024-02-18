@@ -25,7 +25,7 @@ const Select = () => {
             <S.Link2 to={`/registration?${queryString}`}>
               <S.LinkBox2
                 src={queryString === "dog" ? FoundDog : FoundCat}
-                alt="research"
+                alt="registration"
               />
             </S.Link2>
             <S.Link2 to={`/inputImage?${queryString}`}>
@@ -34,7 +34,7 @@ const Select = () => {
                 alt="research"
               />
             </S.Link2>
-            <S.Link2 to={`/registration?${queryString}`}>
+            <S.Link2 to={`/research?${queryString}`}>
               <S.LinkBox2
                 src={queryString === "dog" ? ListDog : ListCat}
                 alt="research"
