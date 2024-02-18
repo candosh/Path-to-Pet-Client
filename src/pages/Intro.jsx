@@ -64,19 +64,12 @@ const Intro = () => {
         <S.Main>
           <S.Titleimg src={MainTitle} alt="title" />
           <S.Row>
-            {/* <S.Link to="/inputImage">
-              <S.LinkBox src={mainImg} alt="img" />
-            </S.Link> */}
-            {/* <S.Middle /> */}
             <S.Link2 to="/select?cat">
               <S.LinkBox2 src={MainCat} alt="research" />
             </S.Link2>
             <S.Link2 to="/select?dog">
               <S.LinkBox2 src={MainDog} alt="research" />
             </S.Link2>
-            {/* <S.Link2 to="/research">
-              <S.LinkBox2 src={ListCat} alt="research" />
-            </S.Link2> */}
           </S.Row>
         </S.Main>
       </S.Background>
