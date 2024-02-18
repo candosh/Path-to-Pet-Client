@@ -71,7 +71,7 @@ const Registration = () => {
       );
 
       console.log("Image uploaded successfully:", response.data);
-      navigate("/research");
+      navigate(`/research?${queryString}`);
     } catch (error) {
       console.log("FormData to be sent:", Array.from(formData.entries()));
 

@@ -102,6 +102,7 @@ const S = {
   CloseButton: styled.img`
     /* padding: 8px; */
     float: right;
+    cursor: pointer;
   `,
 
   InImg: styled.img`
