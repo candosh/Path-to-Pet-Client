@@ -1,18 +1,18 @@
-# 2024 Google Solution Challenge : Pat(h)-to-Pet 🐶 🐈
+# 2024 Google Solution Challenge : Pat(h)-to-Pet
  <img src="https://github.com/gdsc-ssu/Path-to-Pet-Client/assets/104755384/8d5ba6c5-9990-4b64-8c6c-9393f30e6bad" width="520px" alt="logo"/>
 
 Hello, we are the <b>Path to Pet team</b> from GDSC Soongsil University. 🐾
 
 
-## Member 
+## Member 🐈
 
 |      Sangwon Choi       |         Seohyeon Choi       |       Eunso Ahn       |      Hwangon Jang         |                                                                                                    
 | :------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |   <img src="https://avatars.githubusercontent.com/u/21211957?v=4" width="170" alt="깃허브계정-프로필사진"> |             <img src="https://avatars.githubusercontent.com/u/104755384?v=4" width="170" alt="깃허브계정-프로필사진">   |   <img src="https://avatars.githubusercontent.com/u/74090200?v=4" width="170" alt="깃허브계정-프로필사진">   |  <img src="https://avatars.githubusercontent.com/u/33739448?v=4" width="170" alt="깃허브계정-프로필사진">  |
 |   [@ChoiSangwon](https://github.com/ChoiSangwon)   |    [@candosh](https://github.com/candosh) | [@eunsoA](https://github.com/eunsoA)  | [@HwanGonJang](https://github.com/HwanGonJang)  |
-| Frontend | Frontend | Frontend | Backend |
+| Frontend | Frontend | Frontend | Backend && AI |
 
-## Related Repository
+## Related Repository 🐶
 - https://github.com/gdsc-ssu/Path-to-Pet-Client
 - https://github.com/gdsc-ssu/Path-to-Pet-Server
 
